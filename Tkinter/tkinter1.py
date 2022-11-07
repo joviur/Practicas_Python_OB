@@ -1,4 +1,5 @@
 import tkinter
+import random
 from tkinter import ttk
 
 window = tkinter.Tk()
@@ -43,6 +44,31 @@ def geometria_pack():
     label6 = tkinter.Label(window, text='Label6', background='green',fg='white')
     label6.pack(ipadx=15, ipady=15,side='right')
 
-geometria_grid()
+def geometria_place():
+    #Probando he acabado haciendo un generador de arte abstracto:
+    colors = ['blue', 'red','yellow','purple', 'green', 'black']
+    
+    for x in range(0,10):
+        color = colors[random.randint(0, len(colors)-1)]
+        color2 = colors[random.randint(0, len(colors)-1)]
+        ancho = random.randint(0,100)
+        alto = random.randint(0,100)
+        label = tkinter.Label(window, background=color,foreground=color2, padx=ancho, pady=alto)
+        label.place(x=random.randint(0,100), y=random.randint(0,100),)
+
+def componentes():
+    window.columnconfigure(0, weight=1)
+    window.rowconfigure(0, weight=3)
+    
+    lista = ['Windows', 'MacOS', 'Linux', 'MS-DOS']
+    
+    listbox = tkinter.Listbox(window, height=50, listvariable=lista)
+    listbox.grid(column=0, row=0, sticky=tkinter.W)
+    
+    frame = ttk.Frame(window,width=800, height=600, relief='sunken')
+    label = ttk.Label(frame, text='Hola')
+    label.grid(column=0, row=0,sticky=tkinter.W, padx=50, pady=50)
+    frame.grid(column=0, row=0, sticky=tkinter.W)
+componentes()
 window.mainloop()
 
